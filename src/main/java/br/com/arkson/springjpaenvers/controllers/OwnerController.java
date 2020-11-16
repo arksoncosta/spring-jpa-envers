@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author arkson
@@ -26,7 +27,13 @@ public class OwnerController {
 
     @GetMapping("{ownerId}")
     public ResponseEntity<Owner> findById(@PathVariable Long ownerId) {
-        return ResponseEntity.ok(ownerService.findById(ownerId).orElse(null));
+        Optional<Owner> owner = ownerService.findById(ownerId);
+
+        if (owner.isPresent()) {
+            return ResponseEntity.ok(ownerService.findById(ownerId).get());
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping

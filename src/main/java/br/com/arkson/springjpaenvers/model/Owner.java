@@ -22,4 +22,14 @@ public class Owner extends Person {
     private String city;
     private String telephone;
 
+    public static Owner newOwner(String fisrtName, String lastName, String address, String city, String telephone) {
+        Owner owner = new Owner();
+        owner.setFirstName(fisrtName);
+        owner.setLastName(lastName);
+        owner.setAddress(address);
+        owner.setCity(city);
+        owner.setTelephone(telephone);
+
+        return owner;
+    }
 }
